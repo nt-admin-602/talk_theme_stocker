@@ -1,4 +1,4 @@
-export type Mode = "hidden" | "grid" | "focus"
+export type Mode = "grid" | "focus"
 
 export type AppState = {
   mode: Mode

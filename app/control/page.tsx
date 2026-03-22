@@ -39,9 +39,8 @@ export default function ControlPage() {
     setCurrent4(next)
   }
 
-  const modes: Mode[] = ["hidden", "grid", "focus"]
+  const modes: Mode[] = ["grid", "focus"]
   const modeLabel: Record<Mode, string> = {
-    hidden: "非表示",
     grid: "4択グリッド",
     focus: "フォーカス",
   }

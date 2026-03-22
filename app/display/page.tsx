@@ -18,10 +18,6 @@ export default function DisplayPage() {
     patchState({ mode: "grid", selectedIndex: null })
   }
 
-  if (mode === "hidden") {
-    return <div className="w-screen h-screen bg-black" />
-  }
-
   if (mode === "focus") {
     const topic =
       selectedIndex !== null ? current4[selectedIndex] ?? null : null
@@ -57,11 +53,18 @@ export default function DisplayPage() {
       className="w-screen h-screen flex flex-col bg-black"
       style={bgStyle}
     >
-      {title && (
-        <div className="w-full text-center py-4 px-6 pointer-events-none">
+      <div className="flex items-center justify-between px-5 py-3">
+        <a
+          href="/control"
+          className="bg-black/60 hover:bg-black/80 text-white/70 hover:text-white px-4 py-2 rounded-lg text-sm font-semibold transition"
+        >
+          ✏️ 編集画面
+        </a>
+        {title && (
           <span className="text-white/60 text-xl font-bold">{title}</span>
-        </div>
-      )}
+        )}
+        <div className="w-24" />{/* バランス用スペーサー */}
+      </div>
       <div className="flex-1 grid grid-cols-2">
         {current4.map((topic, i) => (
           <button

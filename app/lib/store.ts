@@ -14,7 +14,7 @@ function pickRandom4(topics: string[]): string[] {
 function defaultState(): AppState {
   const topics = INITIAL_TOPICS
   return {
-    mode: "hidden",
+    mode: "grid",
     title: "どれが気になる？",
     topics,
     current4: pickRandom4(topics),
