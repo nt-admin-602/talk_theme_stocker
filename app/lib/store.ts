@@ -39,6 +39,12 @@ function saveState(state: AppState) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
 }
 
+// display など外部から直接 localStorage を書き換えるヘルパー
+export function patchState(patch: Partial<AppState>) {
+  const current = loadState()
+  saveState({ ...current, ...patch })
+}
+
 export function useAppState() {
   const [state, setState] = useState<AppState>(defaultState)
 

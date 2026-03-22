@@ -48,7 +48,16 @@ export default function ControlPage() {
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6">
-      <h1 className="text-2xl font-bold mb-6">🎙️ コントロールパネル</h1>
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold">🎙️ コントロールパネル</h1>
+        <a
+          href="/display"
+          target="_blank"
+          className="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-semibold text-sm transition"
+        >
+          🖥️ 表示画面を開く
+        </a>
+      </div>
 
       {/* モード切替 */}
       <Section title="表示モード">
@@ -193,17 +202,7 @@ export default function ControlPage() {
         </ul>
       </Section>
 
-      {/* display へのリンク */}
-      <div className="mt-8 text-zinc-500 text-sm">
-        視聴者向け表示:{" "}
-        <a
-          href="/display"
-          target="_blank"
-          className="text-indigo-400 underline hover:text-indigo-300"
-        >
-          /display を別タブで開く
-        </a>
-      </div>
+
     </div>
   )
 }
