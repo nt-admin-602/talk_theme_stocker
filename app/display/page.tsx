@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react"
 import { useDisplayState, patchState } from "../lib/store"
 
 export default function DisplayPage() {
@@ -9,6 +10,14 @@ export default function DisplayPage() {
   const bgStyle = backgroundImage
     ? { backgroundImage: `url(${backgroundImage})`, backgroundSize: "cover", backgroundPosition: "center" }
     : {}
+
+  useEffect(() => {
+    if (mode === "focus") {
+      document.title = "トークテーマ"
+    } else {
+      document.title = title || "4択"
+    }
+  }, [mode, title])
 
   const handleSelect = (index: number) => {
     patchState({ selectedIndex: index, mode: "focus" })

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useAppState } from "../lib/store"
 
 export default function ControlPage() {
@@ -14,6 +14,10 @@ export default function ControlPage() {
   } = useAppState()
 
   const { title, topics, current4, backgroundImage } = state
+
+  useEffect(() => {
+    document.title = "お題を選ぶ"
+  }, [])
 
   // ローカル編集用
   const [bgInput, setBgInput] = useState(backgroundImage ?? "")

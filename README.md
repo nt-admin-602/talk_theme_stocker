@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎙️ トークテーマストッカー
 
-## Getting Started
+配信者が「何話そう」で止まらないための、シンプルなトークテーマ管理ツール。
 
-First, run the development server:
+話題をストックしておき、4択カードとして画面に表示。視聴者は「選ぶだけ」で自然に参加できる構造を作ります。
+
+---
+
+## 画面構成
+
+### お題を選ぶ（編集画面） `/control`
+
+- タイトル・背景画像・話題ストックを管理
+- 4択スロットに表示する話題を選ぶ
+- 「4択へ →」ボタンで表示画面に遷移
+
+### 4択表示 `/display`
+
+- 4枚のパステルカードで話題を表示
+- 各カードをクリックするとトークテーマ選択状態に遷移
+- ⚙️ ボタンで編集画面に戻る
+
+### トークテーマ（選択中）
+
+- 選んだカードが全画面カードで大きく表示
+- 「← 戻る」で4択画面に戻る
+
+---
+
+## タブタイトル
+
+| 画面 | タブ表示 |
+|------|----------|
+| 編集画面 | お題を選ぶ |
+| 4択表示 | タイトル入力値 |
+| 選択中 | トークテーマ |
+
+---
+
+## 開発環境のセットアップ
 
 ```bash
+cd talk_theme_stocker
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+[http://localhost:3000](http://localhost:3000) をブラウザで開くと編集画面が表示されます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 技術スタック
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js 16](https://nextjs.org) (App Router / Turbopack)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- カスタムストア（`useSyncExternalStore` ベース / localStorage 永続化）
