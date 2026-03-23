@@ -2,21 +2,18 @@
 
 import { useState } from "react"
 import { useAppState } from "../lib/store"
-import { Mode } from "../lib/types"
 
 export default function ControlPage() {
   const {
     state,
-    setMode,
     setTitle,
     setBackgroundImage,
-    setSelectedIndex,
     setCurrent4,
     setTopics,
     randomize4,
   } = useAppState()
 
-  const { mode, title, topics, current4, selectedIndex, backgroundImage } = state
+  const { title, topics, current4, backgroundImage } = state
 
   // ローカル編集用
   const [bgInput, setBgInput] = useState(backgroundImage ?? "")
@@ -39,67 +36,17 @@ export default function ControlPage() {
     setCurrent4(next)
   }
 
-  const modes: Mode[] = ["grid", "focus"]
-  const modeLabel: Record<Mode, string> = {
-    grid: "4択グリッド",
-    focus: "フォーカス",
-  }
-
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">🎙️ コントロールパネル</h1>
+        <h1 className="text-2xl font-bold">🎙️ お題を選ぶ</h1>
         <a
           href="/display"
-          target="_blank"
           className="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-semibold text-sm transition"
         >
-          🖥️ 表示画面を開く
+          4択へ →
         </a>
       </div>
-
-      {/* モード切替 */}
-      <Section title="表示モード">
-        <div className="flex gap-2 flex-wrap">
-          {modes.map((m) => (
-            <button
-              key={m}
-              onClick={() => setMode(m)}
-              className={`px-4 py-2 rounded-lg font-semibold transition ${
-                mode === m
-                  ? "bg-indigo-500 text-white"
-                  : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-              }`}
-            >
-              {modeLabel[m]}
-            </button>
-          ))}
-        </div>
-        <p className="text-zinc-500 text-sm mt-2">
-          現在: <span className="text-zinc-300">{modeLabel[mode]}</span>
-        </p>
-      </Section>
-
-      {/* フォーカス番号選択 */}
-      {mode === "focus" && (
-        <Section title="フォーカス選択（1〜4）">
-          <div className="flex gap-2">
-            {[0, 1, 2, 3].map((i) => (
-              <button
-                key={i}
-                onClick={() => setSelectedIndex(selectedIndex === i ? null : i)}
-                className={`w-12 h-12 rounded-lg text-xl font-bold transition ${
-                  selectedIndex === i
-                    ? "bg-amber-400 text-black"
-                    : "bg-zinc-800 text-zinc-300 hover:bg-zinc-700"
-                }`}
-              >
-                {i + 1}
-              </button>
-            ))}
-          </div>
-        </Section>
-      )}
 
       {/* タイトル */}
       <Section title="タイトル">
